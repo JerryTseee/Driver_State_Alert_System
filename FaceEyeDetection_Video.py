@@ -11,22 +11,25 @@ video_capture = cv2.VideoCapture("C:\\Users\\admin\\Videos\\Jerry.mp4")
 #processing inside this while loop
 while True:
 
-    #read a frame from the video
-    ret, frame = video_capture.read()
+    #read a clip from the video
+    ret, original = video_capture.read()
 
     #break the loop if no frame is retrieved
     if not ret:
         break
 
     #convert the image to grayscale (gray is good for detection)
-    gray_img = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)#color from BGR to Gray
+    gray_img = cv2.cvtColor(original, cv2.COLOR_BGR2GRAY)#color from BGR to Gray
+
+    #enhance the gray color contrast for better detection
+    gray_img = cv2.equalizeHist(gray_img)
 
     #results lists coordinates (x,y,w,h) of bounding boxes around the detected object
     #perform face detection
     results = face_detector.detectMultiScale(gray_img, scaleFactor=1.05, minNeighbors=5, minSize=(30,30), flags=cv2.CASCADE_SCALE_IMAGE)
     for (x,y,w,h) in results:
         #draws a green rectangle around each detected face and creates regions of interest(ROI) 
-        img = cv2.rectangle(gray_img,(x,y),(x+w,y+h),(0,255,0))#(x,y) are the coordinates of top-left corner of rectangle, obtained by detected face. (x+w, y+h) is the coordinates of the bottom-right corner of the rectangle from detected face
+        img = cv2.rectangle(original,(x,y),(x+w,y+h),(0,255,0))#(x,y) are the coordinates of top-left corner of rectangle, obtained by detected face. (x+w, y+h) is the coordinates of the bottom-right corner of the rectangle from detected face
 
     #extract regions of interest (ROI) from the grayscale image (gray_img) and the original color image (img) based on the coordinates of the detected faces.
     roi_gray = gray_img[y:y+h, x:x+w]
@@ -39,7 +42,7 @@ while True:
 
 
     #show the result
-    cv2.imshow('img',img)
+    cv2.imshow('output',img)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
