@@ -39,9 +39,10 @@ while True:
     for (x1,y1,w1,h1) in results:
         #draws a green rectangle around each detected face and creates regions of interest(ROI) 
         img = cv2.rectangle(original,(x1, y1),(x1 + w1, y1 + h1),(0,255,0))#(x,y) are the coordinates of top-left corner of rectangle, obtained by detected face. (x+w, y+h) is the coordinates of the bottom-right corner of the rectangle from detected face
-        
-        #import gender detection function
+
+        #import gender detection function and age detection function
         findGenderAndAge.findGender(img, original)
+        findGenderAndAge.findAge(img, original)
 
         head_middle = (x1+(w1//2), y1+(h1//2))#the coordinate of middle of the head
         cv2.circle(original, head_middle, 5, (0,0,255), -1)#then draw the middle of the head

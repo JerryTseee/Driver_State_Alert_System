@@ -26,3 +26,15 @@ def findGender(img, original):
     cv2.putText(original, text, (10,90), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0,0,255), 1)
     return gender
 
+#same logic for the findAge function
+def findAge(img, original):
+    age_net = cv2.dnn.readNetFromCaffe("D:\\HKU_Resources\\Python_Tutorials\\FaceRecognition\\age_deploy.prototxt", "D:\\HKU_Resources\\Python_Tutorials\\FaceRecognition\\age_net.caffemodel")
+    blob = cv2.dnn.blobFromImage(img, 1.0, (227,227), (78.426, 87.767, 114.897), swapRB = False)
+    age_net.setInput(blob)
+    age_preds = age_net.forward()
+    age_idx = np.argmax(age_preds)
+    age = str(age_idx+20) # the model is not that accurate, always 4-8 years old, so I manually add back 20
+
+    text = "Age: " + age
+    cv2.putText(original, text, (10,120), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0,0,255), 1)
+    return age
