@@ -1,6 +1,5 @@
 # FaceEyeDetection
 implemented an object detection system with Python and OpenCV, using Haar Cascade algorithm  
-there are two version, one is only applied to picture detection, another can be used for video detection and computer camera detection   
 
 First Expected Output:   
 <img width="367" alt="image" src="https://github.com/JerryTseee/FaceEyeDetection/assets/126223772/daa38e2a-ca63-4e52-865f-4a4d81d24fa7">
