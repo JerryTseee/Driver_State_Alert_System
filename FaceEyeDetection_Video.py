@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+import findGenderAndAge
 
 #load the haar cascade classifiers for face and eye detection
 face_detector = cv2.CascadeClassifier("C:\\opencv\\build\\etc\\haarcascades\\haarcascade_frontalface_default.xml")
@@ -39,6 +40,9 @@ while True:
         #draws a green rectangle around each detected face and creates regions of interest(ROI) 
         img = cv2.rectangle(original,(x1, y1),(x1 + w1, y1 + h1),(0,255,0))#(x,y) are the coordinates of top-left corner of rectangle, obtained by detected face. (x+w, y+h) is the coordinates of the bottom-right corner of the rectangle from detected face
         
+        #import gender detection function
+        findGenderAndAge.findGender(img, original)
+
         head_middle = (x1+(w1//2), y1+(h1//2))#the coordinate of middle of the head
         cv2.circle(original, head_middle, 5, (0,0,255), -1)#then draw the middle of the head
         cv2.line(original, head_middle, midPoint, (0,0,255), 1)#connect the line between head_middle and midPoint
@@ -59,11 +63,13 @@ while True:
         #measure the area of eye
         eye_area = w2*h2
 
+
     text = "Head Position Index: " + str(shortest_distance)
     cv2.putText(original,text, (10,30), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0,0,255), 1)
 
     text = "Eye Area: " + str(eye_area)
     cv2.putText(original,text, (10,60), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0,0,255), 1)
+    
 
     #draw the middel point of whole video:
     cv2.circle(original, midPoint, 5, (0,0,255), -1)
