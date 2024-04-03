@@ -11,4 +11,6 @@ https://github.com/JerryTseee/Driver_State_Alert_System/assets/126223772/6a0484c
 The system is implemented using Python with OpenCV, the Haar Cascades algorithm is used in this project.
 The system captures the stream from the computer camera, then the captured images will be converted to the gray images for better detection.
 After the above preparation, system will load the haar cascade classifiers for the detection of faces and eyes, then it will draw the rectangles
-around the detected faces and eyes.
+around the detected faces and eyes. Pre-trained gender model and age model will be loaded into the main function for the gender recognition and
+age recognition. Finally, the check function will analyze all the obtained data and output the alertion result, when the specific data exceeds
+certain range, it will output the positive alert.
