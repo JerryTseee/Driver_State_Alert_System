@@ -16,9 +16,9 @@ def findGender(img, original):
     gender_preds = gender_net.forward()
     gender_idx = np.argmax(gender_preds)
     if gender_idx == 1:
-        gender = "Male"
-    else:
         gender = "Female"
+    else:
+        gender = "Male"
     
 
     #show
