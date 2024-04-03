@@ -1,6 +1,8 @@
 import cv2
 import numpy as np
 import findGenderAndAge
+import checkDangers
+import time
 
 #load the haar cascade classifiers for face and eye detection
 face_detector = cv2.CascadeClassifier("C:\\opencv\\build\\etc\\haarcascades\\haarcascade_frontalface_default.xml")
@@ -11,6 +13,7 @@ video_capture = cv2.VideoCapture(0)
 
 #initialize the shortest distance of two points, set the beggining value as the infinity
 shortest_distance = float("inf")
+
 
 #processing inside this while loop
 while True:
@@ -41,8 +44,8 @@ while True:
         img = cv2.rectangle(original,(x1, y1),(x1 + w1, y1 + h1),(0,255,0))#(x,y) are the coordinates of top-left corner of rectangle, obtained by detected face. (x+w, y+h) is the coordinates of the bottom-right corner of the rectangle from detected face
 
         #import gender detection function and age detection function
-        findGenderAndAge.findGender(img, original)
-        findGenderAndAge.findAge(img, original)
+        gender = findGenderAndAge.findGender(img, original)
+        age = findGenderAndAge.findAge(img, original)
 
         head_middle = (x1+(w1//2), y1+(h1//2))#the coordinate of middle of the head
         cv2.circle(original, head_middle, 5, (0,0,255), -1)#then draw the middle of the head
@@ -63,7 +66,7 @@ while True:
 
         #measure the area of eye
         eye_area = w2*h2
-
+        
 
     text = "Head Position Index: " + str(shortest_distance)
     cv2.putText(original,text, (10,30), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0,0,255), 1)
@@ -74,6 +77,9 @@ while True:
 
     #draw the middel point of whole video:
     cv2.circle(original, midPoint, 5, (0,0,255), -1)
+
+    #show the final danger driving result
+    checkDangers.check(original, shortest_distance, eye_area, age)
 
     #show the result
     cv2.imshow('output',img)
