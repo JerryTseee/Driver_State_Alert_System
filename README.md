@@ -15,3 +15,7 @@ After the above preparation, system will load the haar cascade classifiers for t
 around the detected faces and eyes. Pre-trained gender model and age model will be loaded into the main function for the gender recognition and
 age recognition. Finally, the check function will analyze all the obtained data and output the alertion result, when the specific data exceeds
 certain range, it will output the positive alert.
+
+- if the Head Position Index exceeds certain range, it is an inappropriate driving (dangerous)  
+- if the age of driver is below 20, it is an illegal driving (dangerous)  
+- if the Eye Close Number exceeds certain range in a period, it is a tired driving (dangerous)  
