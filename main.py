@@ -14,6 +14,8 @@ video_capture = cv2.VideoCapture(0)
 #initialize the shortest distance of two points, set the beggining value as the infinity
 shortest_distance = float("inf")
 
+#eye close counter
+eye_close_times = 0
 
 #processing inside this while loop
 while True:
@@ -70,7 +72,7 @@ while True:
 
     text = "Head Position Index: " + str(shortest_distance)
     cv2.putText(original,text, (10,30), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0,0,255), 1)
-
+    
     text = "Eye Area: " + str(eye_area)
     cv2.putText(original,text, (10,60), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0,0,255), 1)
     
@@ -78,8 +80,8 @@ while True:
     #draw the middel point of whole video:
     cv2.circle(original, midPoint, 5, (0,0,255), -1)
 
-    #show the final danger driving result
-    checkDangers.check(original, shortest_distance, eye_area, age)
+    #show the final danger driving result, and update the eye close times
+    eye_close_times = checkDangers.check(original, shortest_distance, eye_area, age, eye_close_times)
 
     #show the result
     cv2.imshow('output',img)
