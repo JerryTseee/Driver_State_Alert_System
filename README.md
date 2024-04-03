@@ -1,4 +1,6 @@
 # Driver State Alert System  
+real time driver state detection, it is implemented with Python and OpenCV.  
+It can be used to track the safety of the driver and induce the alert system when there are dangerous behaviors  
 # Demo  
 
 
