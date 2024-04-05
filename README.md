@@ -20,6 +20,6 @@ certain range, it will output the positive alert.
 (relevant metrics need to be adjusted according to the real world situations)  
 - if the Head Position Index exceeds certain range, it is an inappropriate driving (dangerous)  
 - if the age of driver is below 20, it is an illegal driving (dangerous)  
-- if the Eye Close Number exceeds certain range in a period, it is a tired driving (dangerous)  
+- if the Eye Close time exceeds certain range in a period, it is a tired driving (dangerous)  
 - Head Position Index measures the distance between the mid point of the camera and the mid point of the detected face  
 - Eye Close Number is obtained by counting the number of times when the detected eyes area is smaller than certain range, this number will be reset to zero after open the eyes  
