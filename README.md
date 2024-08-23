@@ -7,6 +7,7 @@ https://github.com/JerryTseee/Driver_State_Alert_System/assets/126223772/6a0484c
   
 <b>Pictures Demonstration:  
 ![image](https://github.com/user-attachments/assets/d1c9794c-912a-4774-9e03-13299c3698d7)
+![image](https://github.com/user-attachments/assets/7bbeeede-11e6-4579-bc5e-553e75f55f3b)
 <img width="326" alt="image" src="https://github.com/JerryTseee/FaceEyeDetection/assets/126223772/058d421a-457b-4b2e-88ae-0a831e645c5b">  
 # How Does It Work  
 The system is implemented using Python with OpenCV, the Haar Cascades algorithm is used in this project.
