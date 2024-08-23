@@ -4,6 +4,14 @@ import findGenderAndAge
 import checkDangers
 import time
 
+
+identity = True #initialize the driver identity to true
+recognizer = cv2.face.LBPHFaceRecognizer_create()
+recognizer.read("D:\\DriverAlertSystem\\face_identity\\trainer.yml")
+font = cv2.FONT_HERSHEY_SIMPLEX
+
+
+
 #load the haar cascade classifiers for face and eye detection
 face_detector = cv2.CascadeClassifier("C:\\opencv\\build\\etc\\haarcascades\\haarcascade_frontalface_default.xml")
 eye_detector = cv2.CascadeClassifier("C:\\opencv\\build\etc\\haarcascades\\haarcascade_eye.xml")
@@ -57,6 +65,21 @@ while True:
         shortest_distance = np.linalg.norm(np.array(head_middle) - np.array(midPoint))
         
 
+        #identity detection
+        Id = recognizer.predict(gray_img[y1:y1+h1,x1:x1+w1])
+        print(Id)
+        # Check the ID if exist 
+        if(Id[0] == 3):
+            Id = "Jerry"
+            identity = True
+        else:
+            Id = "Unknow"
+            identity = False
+        #put the text on the image
+        cv2.putText(original, str(Id), (x1,y1-40), font, 2, (255,255,255), 3)
+        
+
+
     #extract regions of interest (ROI) from the grayscale image (gray_img) and the original color image (img) based on the coordinates of the detected faces.
     roi_gray = gray_img[y1 : y1 + h1, x1 : x1 + w1]
     roi_color = img[y1 : y1 + h1, x1 : x1 + w1]
@@ -81,7 +104,7 @@ while True:
     cv2.circle(original, midPoint, 5, (0,0,255), -1)
 
     #show the final danger driving result, and update the eye close times
-    eye_close_times = checkDangers.check(original, shortest_distance, eye_area, age, eye_close_times)
+    eye_close_times = checkDangers.check(original, shortest_distance, eye_area, age, eye_close_times, identity)
 
     #show the result
     cv2.imshow('output',img)

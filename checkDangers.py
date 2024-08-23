@@ -7,7 +7,7 @@ import time
 
 #the function is used to detect the danger driving
 #when these parameters under certain range, then it is safe, or it is dangerous
-def check(original, shortest_distance, eye_area, age, eye_close_times):
+def check(original, shortest_distance, eye_area, age, eye_close_times, identity):
 
     output = "Driver State: Safe Driving"   
 
@@ -27,6 +27,10 @@ def check(original, shortest_distance, eye_area, age, eye_close_times):
     #if your age is under 20 -> danger
     if int(age) < 20:
         output = "Driver State: Danger Driving!!!"
+
+    #if the driver is not Jerry -> warning!
+    if not identity:
+        output = "Driver State: Warning! Identity Unknow"
 
 
     #print the result

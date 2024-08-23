@@ -6,7 +6,7 @@ import numpy as np
 
 def findGender(img, original):
     #load the pre-trained models for gender recognition
-    gender_net = cv2.dnn.readNetFromCaffe("D:\\HKU_Resources\\Python_Tutorials\\FaceRecognition\\gender_deploy.prototxt", "D:\\HKU_Resources\\Python_Tutorials\\FaceRecognition\\gender_net.caffemodel")
+    gender_net = cv2.dnn.readNetFromCaffe("D:\\DriverAlertSystem\\gender_deploy.prototxt", "D:\\DriverAlertSystem\\gender_net.caffemodel")
     
     #preprocess the face image for gender recognition
     blob = cv2.dnn.blobFromImage(img, 1.0, (227,227), (78.426, 87.767, 114.897), swapRB = False)
@@ -28,7 +28,7 @@ def findGender(img, original):
 
 #same logic for the findAge function
 def findAge(img, original):
-    age_net = cv2.dnn.readNetFromCaffe("D:\\HKU_Resources\\Python_Tutorials\\FaceRecognition\\age_deploy.prototxt", "D:\\HKU_Resources\\Python_Tutorials\\FaceRecognition\\age_net.caffemodel")
+    age_net = cv2.dnn.readNetFromCaffe("D:\\DriverAlertSystem\\age_deploy.prototxt", "D:\\DriverAlertSystem\\age_net.caffemodel")
     blob = cv2.dnn.blobFromImage(img, 1.0, (227,227), (78.426, 87.767, 114.897), swapRB = False)
     age_net.setInput(blob)
     age_preds = age_net.forward()
