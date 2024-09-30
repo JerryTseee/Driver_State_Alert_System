@@ -1,5 +1,5 @@
 import cv2
-
+# this python file is used for collecting the data
 # Start capturing video 
 vid_capture = cv2.VideoCapture(0)
 
