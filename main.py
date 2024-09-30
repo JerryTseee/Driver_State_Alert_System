@@ -69,7 +69,7 @@ while True:
         Id = recognizer.predict(gray_img[y1:y1+h1,x1:x1+w1])
         print(Id)
         # Check the ID if exist 
-        if(Id[0] == 3):
+        if(Id[0] == 5):
             Id = "Jerry"
             identity = True
         else:
